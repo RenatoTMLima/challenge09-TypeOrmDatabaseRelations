@@ -11,15 +11,25 @@ import {
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 import OrdersProducts from '@modules/orders/infra/typeorm/entities/OrdersProducts';
 
+@Entity('order')
 class Order {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @ManyToOne(() => Customer)
+  @JoinColumn({ name: 'id' })
   customer: Customer;
 
+  @OneToMany(() => OrdersProducts, orderProducts => orderProducts.order, {
+    eager: true,
+  })
+  @JoinColumn()
   order_products: OrdersProducts[];
 
+  @CreateDateColumn()
   created_at: Date;
 
+  @UpdateDateColumn()
   updated_at: Date;
 }
 
