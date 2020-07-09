@@ -60,7 +60,7 @@ export default class CreateOrdersProductsTable1593296664760
         name: 'OrderIdReference',
         columnNames: ['order_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'order',
+        referencedTableName: 'orders',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       }),
